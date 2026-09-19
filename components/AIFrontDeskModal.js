@@ -44,21 +44,12 @@ import Link from 'next/link';
  * ============================================================================
  */
 
+import ElevenLabsVoiceAgent from './ElevenLabsVoiceAgent';
+
 export default function AIFrontDeskModal() {
   const { isOpen, closeModal, activeTab, setActiveTab } = useAIFrontDesk();
-  
-  // Future ElevenLabs Voice Agent State Machine hook simulation
-  const [agentState, setAgentState] = useState('Idle'); // 'Idle' | 'Connecting' | 'Listening' | 'AISpeaking' | 'Processing' | 'Ended' | 'Error'
-  const [selectedPrompt, setSelectedPrompt] = useState(null);
 
   if (!isOpen) return null;
-
-  const quickPrompts = [
-    { label: 'New Patient Intake', text: 'I would like to join SmileCraft Dental as a new patient.' },
-    { label: 'Book Appointment', text: 'What times are available for a dental implant consultation?' },
-    { label: 'Treatment Questions', text: 'Do you offer clear aligner treatments like Invisalign?' },
-    { label: 'Office Info & Hours', text: 'Where is your Park Avenue clinic located and what are your hours?' }
-  ];
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
@@ -83,11 +74,11 @@ export default function AIFrontDeskModal() {
               <div className="flex items-center gap-2">
                 <h3 className="font-serif text-xl font-medium text-ivory-50">SMILECRAFT AI FRONT DESK</h3>
                 <span className="px-2 py-0.5 rounded-full text-[10px] font-medium tracking-wide bg-sage-500/20 text-sage-400 border border-sage-500/30 uppercase">
-                  Sales Demo
+                  Live ElevenLabs AI
                 </span>
               </div>
               <p className="text-xs text-ivory-400 mt-0.5 font-sans">
-                Virtual Receptionist Architecture • Powered by Trishul AI
+                Virtual Receptionist Architecture • Powered by ElevenLabs & Trishul AI
               </p>
             </div>
           </div>
@@ -122,7 +113,7 @@ export default function AIFrontDeskModal() {
             }`}
           >
             <Mic className="w-3.5 h-3.5 text-champagne-500" />
-            Voice Integration Point
+            Live Voice Receptionist
           </button>
         </div>
 
@@ -197,7 +188,7 @@ export default function AIFrontDeskModal() {
                   className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-navy-900 dark:bg-champagne-500 text-ivory-50 dark:text-navy-950 text-sm font-semibold hover:bg-navy-800 dark:hover:bg-champagne-400 transition-all shadow-md group"
                 >
                   <Mic className="w-4 h-4 text-champagne-400 dark:text-navy-950 group-hover:scale-110 transition-transform" />
-                  <span>Inspect Voice Agent Integration</span>
+                  <span>Talk to Live Voice Receptionist</span>
                   <ArrowRight className="w-4 h-4 text-ivory-400 dark:text-navy-950 group-hover:translate-x-1 transition-transform" />
                 </button>
                 <Link
@@ -213,86 +204,7 @@ export default function AIFrontDeskModal() {
           )}
 
           {activeTab === 'voice' && (
-            <div className="space-y-6">
-              {/* Voice Agent Demo State Container */}
-              <div className="bg-navy-900 text-ivory-50 p-6 rounded-2xl border border-navy-800 relative overflow-hidden text-center space-y-4">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-champagne-500/10 border border-champagne-400/30 text-champagne-400 text-xs font-medium">
-                  <span className="w-2 h-2 rounded-full bg-champagne-400 animate-ping" />
-                  <span>ElevenLabs Integration Architectural Ready State</span>
-                </div>
-
-                <div className="w-20 h-20 mx-auto rounded-full bg-navy-800 border-2 border-champagne-500/40 flex items-center justify-center relative shadow-inner">
-                  <Mic className="w-8 h-8 text-champagne-400" />
-                  <div className="absolute -inset-2 rounded-full border border-champagne-500/20 animate-pulse-subtle" />
-                </div>
-
-                <div>
-                  <h4 className="font-serif text-xl font-medium text-ivory-100">
-                    AI Front Desk Connection Point
-                  </h4>
-                  <p className="text-xs text-ivory-300/80 max-w-md mx-auto mt-1 leading-relaxed">
-                    This component is configured for ElevenLabs Conversational AI integration. In production, clicking below initiates a secure WebSocket stream using backend signed tokens.
-                  </p>
-                </div>
-
-                {/* State Preview Badge */}
-                <div className="inline-block bg-navy-950 px-4 py-2 rounded-lg border border-navy-800 text-xs font-mono text-sage-400">
-                  Current Component State: <span className="text-champagne-400 font-bold">{agentState}</span>
-                </div>
-
-                {/* Simulated Connector Button */}
-                <div className="pt-2">
-                  <button
-                    onClick={() => {
-                      setAgentState('Connecting');
-                      setTimeout(() => setAgentState('Listening'), 1200);
-                      setTimeout(() => setAgentState('AISpeaking'), 3000);
-                      setTimeout(() => setAgentState('Idle'), 5500);
-                    }}
-                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-champagne-500 text-navy-950 text-sm font-semibold hover:bg-champagne-400 transition-all shadow-lg hover:shadow-champagne-500/20"
-                  >
-                    <PhoneCall className="w-4 h-4" />
-                    <span>Test Voice Agent State Loop</span>
-                  </button>
-                </div>
-              </div>
-
-              {/* Sample Dialog Prompts for Demo */}
-              <div>
-                <h5 className="text-xs font-bold text-navy-900 dark:text-ivory-100 uppercase tracking-wider mb-2 flex items-center gap-1.5">
-                  <HelpCircle className="w-4 h-4 text-champagne-500" />
-                  Common Patient Inquiries Handled by AI:
-                </h5>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                  {quickPrompts.map((item, idx) => (
-                    <button
-                      key={idx}
-                      onClick={() => setSelectedPrompt(item)}
-                      className={`text-left p-3 rounded-xl border text-xs transition-all ${
-                        selectedPrompt?.label === item.label
-                          ? 'bg-champagne-100 dark:bg-navy-800 border-champagne-500 text-navy-900 dark:text-champagne-400 font-medium'
-                          : 'bg-white dark:bg-navy-900 border-ivory-200 dark:border-navy-800 text-charcoal-700 dark:text-ivory-300 hover:border-ivory-300 dark:hover:border-navy-700'
-                      }`}
-                    >
-                      <span className="font-bold block text-navy-900 dark:text-ivory-100 mb-0.5">{item.label}</span>
-                      <span className="text-charcoal-700/70 dark:text-ivory-400/80 italic">"{item.text}"</span>
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Architecture Explanation Box */}
-              <div className="bg-ivory-100 dark:bg-navy-900 p-4 rounded-xl border border-ivory-300 dark:border-navy-800 text-xs text-charcoal-700 dark:text-ivory-300 space-y-1">
-                <div className="font-semibold text-navy-900 dark:text-ivory-100 flex items-center gap-1">
-                  <Info className="w-3.5 h-3.5 text-sage-600 dark:text-sage-400" />
-                  Technical Note for Demo Presenters:
-                </div>
-                <p className="text-charcoal-700/80 dark:text-ivory-300/80 leading-relaxed">
-                  No fake voice synthesis or fake call loops are triggered here. The frontend is cleanly structured with an ElevenLabs client interface wrapper. When Trishul AI connects the backend, voice session tokens will bind automatically.
-                </p>
-              </div>
-
-            </div>
+            <ElevenLabsVoiceAgent onBookClick={closeModal} />
           )}
 
         </div>

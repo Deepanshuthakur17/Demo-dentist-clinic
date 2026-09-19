@@ -1,7 +1,7 @@
-'use me';
 'use client';
 
 import React, { createContext, useContext, useState } from 'react';
+import { ConversationProvider } from '@elevenlabs/react';
 
 const AIFrontDeskContext = createContext({
   isOpen: false,
@@ -13,7 +13,7 @@ const AIFrontDeskContext = createContext({
 
 export function AIFrontDeskProvider({ children }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState('overview'); // 'overview' | 'voice' | 'book'
+  const [activeTab, setActiveTab] = useState('overview'); // 'overview' | 'voice'
 
   const openModal = (tab = 'overview') => {
     setActiveTab(tab);
@@ -25,17 +25,19 @@ export function AIFrontDeskProvider({ children }) {
   };
 
   return (
-    <AIFrontDeskContext.Provider
-      value={{
-        isOpen,
-        openModal,
-        closeModal,
-        activeTab,
-        setActiveTab,
-      }}
-    >
-      {children}
-    </AIFrontDeskContext.Provider>
+    <ConversationProvider>
+      <AIFrontDeskContext.Provider
+        value={{
+          isOpen,
+          openModal,
+          closeModal,
+          activeTab,
+          setActiveTab,
+        }}
+      >
+        {children}
+      </AIFrontDeskContext.Provider>
+    </ConversationProvider>
   );
 }
 

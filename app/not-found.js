@@ -11,7 +11,7 @@ export default function NotFound() {
   return (
     <div className="min-h-[75vh] flex items-center justify-center py-20 px-4 sm:px-6 lg:px-8 bg-ivory-50 dark:bg-navy-950 transition-colors duration-300">
       <div className="max-w-2xl w-full text-center space-y-8 glass-panel p-8 sm:p-12 rounded-3xl border border-ivory-300 dark:border-navy-800 shadow-elevated">
-        
+
         {/* Custom Tooth Graphic Graphic Emblem */}
         <div className="w-20 h-20 mx-auto rounded-3xl bg-navy-900 dark:bg-navy-900 border-2 border-champagne-400/40 flex items-center justify-center text-champagne-400 shadow-lg relative overflow-hidden group">
           <svg className="w-10 h-10 fill-champagne-400 group-hover:scale-110 transition-transform" viewBox="0 0 32 32">
@@ -54,7 +54,7 @@ export default function NotFound() {
         </div>
 
         {/* AI Front Desk Callout */}
-        <div className="pt-4 border-t border-ivory-200 dark:border-navy-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-left bg-white/60 dark:bg-navy-900/60 p-4 rounded-2xl border border-ivory-300 dark:border-navy-800">
+        <div className="pt-4 border-t border-ivory-200 dark:border-navy-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-left bg-white/60 dark:bg-navy-900/60 p-4 rounded-2xl border">
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 rounded-xl bg-champagne-500/20 text-champagne-400 flex items-center justify-center shrink-0">
               <Bot className="w-5 h-5" />
